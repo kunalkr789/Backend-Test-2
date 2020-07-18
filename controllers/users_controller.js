@@ -6,6 +6,14 @@ module.exports.profile = function (req, res) {
 
 // render the sign in page
 module.exports.signIn = function (req, res) {
+  let user = User.findOne({ email: req.body.email });
+  if (req.body.password != user.password) {
+    req.flash("error", "Wrong Password");
+    //return res.redirect("back");
+  }
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
   return res.render("sign_in", {
     title: "Sign In",
   });
@@ -42,6 +50,13 @@ module.exports.create = function (req, res) {
 
 // render the sign up page
 module.exports.signUp = function (req, res) {
+  if (req.body.password != req.body.confirm_password) {
+    req.flash("error", "password confirm password mismatch");
+    return res.redirect("back");
+  }
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
   return res.render("sign_up", {
     title: "Sign In",
   });
@@ -49,6 +64,13 @@ module.exports.signUp = function (req, res) {
 
 // sign in and create a session for the user
 module.exports.createSession = function (req, res) {
-  //req.flash("success", "Logged in Successfully");
+  req.flash("success", "Logged in Successfully");
+  return res.redirect("/");
+};
+
+module.exports.destroySession = function (req, res) {
+  req.logout();
+  req.flash("success", "You have logged out!");
+
   return res.redirect("/");
 };

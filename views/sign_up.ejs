@@ -2,6 +2,11 @@
 <html>   
     <head>
         <title>Sign Up</title>
+        <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
         <link rel="stylesheet" href="/css/index.css">
     </head>
 
@@ -10,7 +15,6 @@
         <div class="form-signup">
             <h1>Welcome</h1>
             <form action="/users/create" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="password" name="confirm_password" placeholder="Confirm Password" required>
@@ -28,5 +32,28 @@
                 </a>
             </p>
         </div>   
+        <script>
+            <% if (flash.success && flash.success.length > 0) {%>
+                      new Noty({
+                          theme: 'relax',
+                          text: "<%= flash.success %>",
+                          type: 'success',
+                          layout: 'topRight',
+                          timeout: 1500
+      
+                      }).show();
+                  <%} %>
+      
+                  <% if (flash.error && flash.error.length > 0) {%>
+                      new Noty({
+                          theme: 'relax',
+                          text: "<%= flash.error %>",
+                          type: 'error',
+                          layout: 'topRight',
+                          timeout: 1500
+      
+                      }).show();
+                  <%} %>
+          </script>
     </body>
 </html>

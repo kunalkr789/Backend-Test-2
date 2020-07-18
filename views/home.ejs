@@ -3,8 +3,64 @@
     <title>
       <%= title %>
     </title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css" />
   </head>
   <body>
-    <h1>Homepage</h1>
+    <h2>Homepage</h2>
+    <br />
+    <% if (locals.user){ %>
+    <ul class="item">
+      <li style="margin-top: 5px;">
+        <a href="/users/sign-out" class="text">
+          <button>Sign Out</button>
+        </a>
+      </li>
+      <li style="margin-top: 5px;">
+        <a href="/users/sign-in" class="text">
+          <button>Reset Password</button>
+        </a>
+      </li>
+    </ul>
+    <% }else{%>
+    <p>
+      Please
+      <a href="/users/sign-in" class="text">
+        <button>Sign In</button>
+      </a>
+      or
+      <a href="/users/sign-up" class="text">
+        <button>Sign Up</button>
+      </a>
+      to continue...
+    </p>
+    <% } %>
+    <script>
+      <% if (flash.success && flash.success.length > 0) {%>
+                new Noty({
+                    theme: 'relax',
+                    text: "<%= flash.success %>",
+                    type: 'success',
+                    layout: 'topRight',
+                    timeout: 1500
+
+                }).show();
+            <%} %>
+
+            <% if (flash.error && flash.error.length > 0) {%>
+                new Noty({
+                    theme: 'relax',
+                    text: "<%= flash.error %>",
+                    type: 'error',
+                    layout: 'topRight',
+                    timeout: 1500
+
+                }).show();
+            <%} %>
+    </script>
   </body>
 </html>

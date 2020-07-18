@@ -4,7 +4,6 @@
 }
 
 body {
-  background: #ecf1f4;
   font-family: sans-serif;
 }
 
@@ -58,4 +57,21 @@ input[type="button"]:hover {
 img {
   height: 25px;
   width: 25px;
+}
+
+button {
+  width: 10%;
+  background: #86a794;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  padding: 6px 15px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #3e3d3d;
+}
+button:hover {
+  background: #a4b15c;
+  transition: 0.6s;
 }
