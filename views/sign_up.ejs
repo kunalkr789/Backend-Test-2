@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>   
+    <head>
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
+
+    <body>
+    
+        <div class="form-signup">
+            <h1>Welcome</h1>
+            <form action="/users/create" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                <input type="submit" value="Sign Up">
+            </form>
+            <p>
+                Already a member? <a href="/users/sign-in">Sign In</a>
+                <br>
+                <br>
+                <h5 style="text-align: center;">Or</h5>
+                <br>
+                Sign In with : &nbsp;
+                <a href="/users/auth/google">
+                    <img src="/images/google.png" alt=""/>
+                </a>
+            </p>
+        </div>   
+    </body>
+</html>
